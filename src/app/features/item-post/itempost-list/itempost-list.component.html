@@ -1,0 +1,36 @@
+<div class="container">
+    <h1 class="mt-3">Item List</h1>
+
+    <div class="d-flex justify-content-end mt-3">
+        <a [routerLink]="['/admin/items/add']" class="btn btn-primary">Add Item</a>
+    </div>
+
+    <ng-container *ngIf="items$ | async as items">
+        <table class="table table-bordered mt-3">
+            <thead>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Note</th>
+                <th>Last Inventory</th>
+                <th>Suppliers</th>
+                <th> </th>
+            </thead>
+        <tbody>
+            <tr *ngFor="let item of items">
+                <td>{{item.name}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.note}}</td>
+                <td>{{item.lastInventory}}</td>
+                <td>
+                    <span *ngFor="let supplier of item.supplier">
+                        <span class="badge bg-secondary me-2">{{supplier.name}}</span>
+                    </span>
+                </td>
+                <td>
+                    <a class="btn btn-light" [routerLink]="['/admin/items', item.id]">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    </ng-container>
+</div>

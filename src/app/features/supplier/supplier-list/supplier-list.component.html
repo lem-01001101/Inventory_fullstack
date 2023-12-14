@@ -1,0 +1,31 @@
+<div class="container">
+    <h1 class="m-3">Supplier List</h1>
+    
+    <div class="d-flex justify-content-end mt-3">
+        <a [routerLink]="['/admin/suppliers/add']" class="btn btn-primary">Add Supplier</a>
+    </div>
+
+    <ng-container *ngIf="suppliers$ | async as suppliers">
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Url Handle</th>
+                    <th> </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let supplier of suppliers">
+                    <td>{{supplier.id}}</td>
+                    <td>{{supplier.name}}</td>
+                    <td>{{supplier.urlHandle}}</td>
+                    <td>
+                        <a class="btn btn-light" [routerLink]="['/admin/suppliers', supplier.id]">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+</div>
